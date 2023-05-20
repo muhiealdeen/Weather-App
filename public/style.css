@@ -1,0 +1,76 @@
+/* I took the CSS reset from https://www.digitalocean.com/community/tutorials/css-minimal-css-reset */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*------------------- Header ---------------*/
+.main-header {
+  background-color: lightblue;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  margin-right: 10px;
+  padding: 5px;
+  width: 150px;
+  text-align: center;
+  border-radius: 5%;
+}
+
+.submit-button {
+  padding: 5px 10px;
+  border-radius: 5%;
+  font-weight: bold;
+}
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.select-day {
+  /* margin-top: 10px; */
+  width: 100px;
+  text-align: center;
+  border-radius: 5%;
+}

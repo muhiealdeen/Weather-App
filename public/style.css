@@ -74,3 +74,13 @@ img {
   text-align: center;
   border-radius: 5%;
 }
+
+@media (max-width: 600px) {
+  .search {
+    width: 100px;
+  }
+
+  .select-day {
+    width: 80px;
+  }
+}

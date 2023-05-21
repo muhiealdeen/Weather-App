@@ -2,16 +2,16 @@
 
 const searchInput = document.querySelector('.search');
 const submitButton = document.querySelector('.submit-button');
-
-export const cityNameAndNumberOFdays = submitButton.addEventListener(
+const cityNameAndNumberOFdays = submitButton.addEventListener(
   'click',
-  function () {
+  async function () {
     const writtenCityName = searchInput.value.toLowerCase();
 
     const selectElement = document.querySelector('.select-day');
     const selectedValue = selectElement.value;
     //--------------------------grabbing the main container div and create the dives card and add them inside it
     const mainContainer = document.querySelector('.maine-container');
+    mainContainer.innerHTML = '';
     for (let i = 0; i < selectedValue; i++) {
       const card = document.createElement('div');
       card.textContent = `card ${i + 1}`;
@@ -20,7 +20,7 @@ export const cityNameAndNumberOFdays = submitButton.addEventListener(
     }
 
     // console.log(selectedValue);
-    handleCityName(writtenCityName, selectedValue);
+    await handleCityName(writtenCityName, selectedValue);
   },
 );
 
@@ -50,7 +50,8 @@ async function handleCityName(cityName, numberOfDays) {
     // console.log('Longitude:', longitude);
     const mainUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum&current_weather=true&forecast_days=${numberOfDays}&timezone=auto`;
 
-    await getData(mainUrl);
+    const requiredWeatherData = await getData(mainUrl);
+    return requiredWeatherData;
   } catch (error) {
     console.error(error.message);
     throw error;
@@ -64,8 +65,13 @@ async function getData(url) {
       throw new Error(`Network error:${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
-
+    const keys = Object.entries(data);
+    const dailyWeatherInfo = keys[9][1];
+    console.log(Object.entries(dailyWeatherInfo));
+    // keys.forEach((key) => {
+    //   console.log(key);
+    // });
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -73,5 +79,5 @@ async function getData(url) {
   }
 }
 
-// const time = data.daily_units.time;
+// const time = data.daily;
 // console.log(time);

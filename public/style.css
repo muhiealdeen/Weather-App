@@ -61,6 +61,7 @@ body {
   position: fixed;
   top: 0;
   z-index: 1;
+  flex-wrap: wrap;
 }
 
 .search-container {
@@ -160,12 +161,25 @@ body {
 }
 
 @media (max-width: 600px) {
+  .search-container {
+    order: 2; /* Move the search container below the logo */
+    width: 100%;
+    margin-bottom: 10px; /* Add some spacing */
+  }
+
   .search {
     width: 100px;
   }
+  .logo {
+    order: 1; /* Move the logo to the top */
+    width: 100%;
+    margin-bottom: 10px; /* Add some spacing */
+  }
 
   .select-day {
-    width: 80px;
+    width: 100px;
+
+    order: 3; /* Move the select day below the search container */
   }
   .maine-container {
     display: grid;
@@ -174,6 +188,6 @@ body {
     padding: 10px;
   }
   .card {
-    width: 180px;
+    width: 250px;
   }
 }

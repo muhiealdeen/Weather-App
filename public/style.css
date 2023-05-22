@@ -45,6 +45,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: url(assets/Background-weather.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
 }
 /*------------------- Header ---------------*/
 
@@ -54,6 +58,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
 .search-container {
@@ -94,10 +102,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 20px;
-  background-image: url(assets/Background-weather.jpg);
-  background-size: cover;
-  background-position: center;
-  padding: 20px;
 }
 
 .card {
@@ -139,6 +143,16 @@ body {
   background-color: lightblue;
   padding: 10px;
   text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+@media (max-width: 1024px) {
+  .maine-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -148,6 +162,13 @@ body {
 
   .select-day {
     width: 80px;
+  }
+  .maine-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .card {
+    width: 180px;
   }
 }
 @media (max-width: 767px) {

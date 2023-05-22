@@ -11,7 +11,7 @@ const cityNameAndNumberOFdays = submitButton.addEventListener(
 
     const selectElement = document.querySelector('.select-day');
     const selectedValue = selectElement.value;
-    createCards(selectedValue);
+    // createCards(selectedValue);
 
     // console.log(selectedValue);
     await handleCityName(writtenCityName, selectedValue);
@@ -71,7 +71,7 @@ async function getData(url) {
   }
 }
 
-//------------- in this function I will deal with returned data ad organize it to inseart them insid the cards -----------------
+//------------- In this function I am creating the card dives  and add them inside the mainContainer div then handled the returned data and organize it to inseart them insid the cards -----------------
 function handleDailyWeatherData(data) {
   mainContainer.innerHTML = '';
 
@@ -108,13 +108,13 @@ function handleDailyWeatherData(data) {
 }
 
 //--------------------------Here I am creating the card dives  and add them inside the mainContainer div------------------------
-function createCards(numberOfDays) {
-  mainContainer.innerHTML = '';
-  for (let i = 0; i < numberOfDays; i++) {
-    const card = document.createElement('div');
+// function createCards(numberOfDays) {
+//   mainContainer.innerHTML = '';
+//   for (let i = 0; i < numberOfDays; i++) {
+//     const card = document.createElement('div');
 
-    card.textContent = `Card ${i + 1}`;
-    card.className = `card`;
-    mainContainer.appendChild(card);
-  }
-}
+//     card.textContent = `Card ${i + 1}`;
+//     card.className = `card`;
+//     mainContainer.appendChild(card);
+//   }
+// }

@@ -46,8 +46,8 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 60px; /* Adjust this value to leave space for the fixed header */
-  padding-bottom: 60px; /* Adjust this value to leave space for the fixed footer */
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 /*------------------- Header ---------------*/
 

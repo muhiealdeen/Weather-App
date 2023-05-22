@@ -1,5 +1,3 @@
-//----------------------- In this part of code we fething the goecdes to get the latitude and longitude of the chosen city -----------------------------
-
 const searchInput = document.querySelector('.search');
 const submitButton = document.querySelector('.submit-button');
 const mainContainer = document.querySelector('.maine-container');
@@ -19,6 +17,20 @@ const cityNameAndNumberOFdays = submitButton.addEventListener(
   },
 );
 
+searchInput.addEventListener('keydown', async function (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault(); // Prevent form submission
+
+    const writtenCityName = searchInput.value.toLowerCase();
+    const selectElement = document.querySelector('.select-day');
+    const selectedValue = selectElement.value;
+
+    await handleCityName(writtenCityName, selectedValue);
+    searchInput.value = '';
+  }
+});
+//----------------------- In this part of code we fething the goecdes to get the latitude and longitude of the chosen city -----------------------------
+
 async function handleCityName(cityName, numberOfDays) {
   // console.log(cityName);
   const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=1&language=en&format=json`;
@@ -37,6 +49,7 @@ async function handleCityName(cityName, numberOfDays) {
     }
   }
 
+  //-------------------------- In this part of code we fething the weather data for the chosen city --------------------------
   try {
     const data = await getCityLocationData(geoUrl);
     const latitude = data.results[0].latitude;
@@ -53,7 +66,7 @@ async function handleCityName(cityName, numberOfDays) {
   }
 }
 
-//-------------------------- In this part of code we fething the weather data for the chosen city --------------------------
+//-------------------------- Here is the function that fetch the weather data --------------------------
 
 async function getData(url) {
   try {

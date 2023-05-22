@@ -39,16 +39,15 @@ img {
 
 /*------------------------------------------*/
 body {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-image: url(assets/Background-weather.jpg);
   background-size: cover;
   background-position: center;
-  padding: 20px;
+  background-repeat: no-repeat;
+  padding-top: 60px; /* Adjust this value to leave space for the fixed header */
+  padding-bottom: 60px; /* Adjust this value to leave space for the fixed footer */
 }
 /*------------------- Header ---------------*/
 
@@ -95,13 +94,11 @@ body {
 }
 
 .maine-container {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 20px;
+  flex-grow: 1; /* Allow the container to grow and occupy the remaining space */
 }
 
 .card {
@@ -139,19 +136,26 @@ body {
   color: #0000ff; /* Change the color to your desired hover effect */
 }
 .footer {
-  margin-top: auto;
-  background-color: lightblue;
-  padding: 10px;
-  text-align: center;
   width: 100%;
   position: fixed;
   bottom: 0;
   z-index: 1;
+  background-color: lightblue;
+  padding: 10px;
+  text-align: center;
+  flex-shrink: 0; /* Ensure the footer doesn't shrink and remains at the bottom */
 }
 @media (max-width: 1024px) {
   .maine-container {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
   }
 }
 
@@ -166,13 +170,10 @@ body {
   .maine-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding: 10px;
   }
   .card {
     width: 180px;
-  }
-}
-@media (max-width: 767px) {
-  .card {
-    width: 100%;
   }
 }

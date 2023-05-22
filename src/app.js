@@ -15,6 +15,7 @@ const cityNameAndNumberOFdays = submitButton.addEventListener(
 
     // console.log(selectedValue);
     await handleCityName(writtenCityName, selectedValue);
+    searchInput.value = '';
   },
 );
 
@@ -106,15 +107,3 @@ function handleDailyWeatherData(data) {
     mainContainer.appendChild(card);
   }
 }
-
-//--------------------------Here I am creating the card dives  and add them inside the mainContainer div------------------------
-// function createCards(numberOfDays) {
-//   mainContainer.innerHTML = '';
-//   for (let i = 0; i < numberOfDays; i++) {
-//     const card = document.createElement('div');
-
-//     card.textContent = `Card ${i + 1}`;
-//     card.className = `card`;
-//     mainContainer.appendChild(card);
-//   }
-// }

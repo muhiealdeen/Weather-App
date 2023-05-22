@@ -1,1 +1,0 @@
-import {cityNameAndNumberOFdays} from `../app.js`

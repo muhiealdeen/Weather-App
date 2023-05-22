@@ -2,6 +2,8 @@
 
 const searchInput = document.querySelector('.search');
 const submitButton = document.querySelector('.submit-button');
+const mainContainer = document.querySelector('.maine-container');
+
 const cityNameAndNumberOFdays = submitButton.addEventListener(
   'click',
   async function () {
@@ -9,15 +11,7 @@ const cityNameAndNumberOFdays = submitButton.addEventListener(
 
     const selectElement = document.querySelector('.select-day');
     const selectedValue = selectElement.value;
-    //--------------------------grabbing the main container div and create the dives card and add them inside it
-    const mainContainer = document.querySelector('.maine-container');
-    mainContainer.innerHTML = '';
-    for (let i = 0; i < selectedValue; i++) {
-      const card = document.createElement('div');
-      card.textContent = `card ${i + 1}`;
-      card.id = `card${i + 1}`;
-      mainContainer.appendChild(card);
-    }
+    createCards(selectedValue);
 
     // console.log(selectedValue);
     await handleCityName(writtenCityName, selectedValue);
@@ -57,7 +51,9 @@ async function handleCityName(cityName, numberOfDays) {
     throw error;
   }
 }
+
 //-------------------------- In this part of code we fething the weather data for the chosen city --------------------------
+
 async function getData(url) {
   try {
     const response = await fetch(url);
@@ -65,19 +61,60 @@ async function getData(url) {
       throw new Error(`Network error:${response.status}`);
     }
     const data = await response.json();
-    const keys = Object.entries(data);
-    const dailyWeatherInfo = keys[9][1];
-    console.log(Object.entries(dailyWeatherInfo));
-    // keys.forEach((key) => {
-    //   console.log(key);
-    // });
-    // console.log(data);
-    return data;
+
+    console.log(data);
+    await handleDailyWeatherData(data);
+    // return data;
   } catch (error) {
     console.log(error);
     throw error;
   }
 }
 
-// const time = data.daily;
-// console.log(time);
+//------------- in this function I will deal with returned data ad organize it to inseart them insid the cards -----------------
+function handleDailyWeatherData(data) {
+  mainContainer.innerHTML = '';
+
+  for (let i = 0; i < data.daily.time.length; i++) {
+    const time = data.daily.time[i];
+    const weathercode = data.daily.weathercode[i];
+    const temperatureMax = data.daily.temperature_2m_max[i];
+    const temperatureMin = data.daily.temperature_2m_min[i];
+    const sunrise = data.daily.sunrise[i];
+    const sunset = data.daily.sunset[i];
+    const precipitationSum = data.daily.precipitation_sum[i];
+    const rainSum = data.daily.rain_sum[i];
+    const showersSum = data.daily.showers_sum[i];
+    const snowfallSum = data.daily.snowfall_sum[i];
+    const card = document.createElement('div');
+
+    card.innerHTML = `
+      <h3>Day ${i + 1}</h3>
+      <p>Time: ${time}</p>
+      <p>Weather Code: ${weathercode}</p>
+      <p>Max Temperature: ${temperatureMax}</p>
+      <p>Min Temperature: ${temperatureMin}</p>
+      <p>Sunrise: ${sunrise}</p>
+      <p>Sunset: ${sunset}</p>
+      <p>Precipitation Sum: ${precipitationSum}</p>
+      <p>Rain Sum: ${rainSum}</p>
+      <p>Showers Sum: ${showersSum}</p>
+      <p>Snowfall Sum: ${snowfallSum}</p>
+    `;
+
+    card.id = `card${i + 1}`;
+    mainContainer.appendChild(card);
+  }
+}
+
+//--------------------------Here I am creating the card dives  and add them inside the mainContainer div------------------------
+function createCards(numberOfDays) {
+  mainContainer.innerHTML = '';
+  for (let i = 0; i < numberOfDays; i++) {
+    const card = document.createElement('div');
+
+    card.textContent = `Card ${i + 1}`;
+    card.id = `card${i + 1}`;
+    mainContainer.appendChild(card);
+  }
+}

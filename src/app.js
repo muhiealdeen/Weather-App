@@ -102,7 +102,7 @@ function handleDailyWeatherData(data) {
       <p>Snowfall Sum: ${snowfallSum}</p>
     `;
 
-    card.id = `card${i + 1}`;
+    card.className = `card`;
     mainContainer.appendChild(card);
   }
 }
@@ -114,7 +114,7 @@ function createCards(numberOfDays) {
     const card = document.createElement('div');
 
     card.textContent = `Card ${i + 1}`;
-    card.id = `card${i + 1}`;
+    card.className = `card`;
     mainContainer.appendChild(card);
   }
 }

@@ -3,6 +3,7 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
+  min-height: 100%;
 }
 
 *,
@@ -36,7 +37,17 @@ img {
   height: auto;
 }
 
+/*------------------------------------------*/
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 /*------------------- Header ---------------*/
+
 .main-header {
   background-color: lightblue;
   padding: 10px;
@@ -75,6 +86,56 @@ img {
   border-radius: 5%;
 }
 
+.maine-container {
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 20px;
+}
+
+.card {
+  width: 250px;
+  margin: 20px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* CSS for the elements inside each card */
+.card h3 {
+  font-size: 18px;
+  margin: 10px;
+}
+
+.card p {
+  margin: 10px;
+}
+
+/* Additional styling for specific elements */
+.card:hover h3 {
+  color: #ff0000; /* Change the color to your desired hover effect */
+}
+
+.card:hover p {
+  color: #0000ff; /* Change the color to your desired hover effect */
+}
+.footer {
+  margin-top: auto;
+  background-color: lightblue;
+  padding: 10px;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .search {
     width: 100px;
@@ -82,5 +143,10 @@ img {
 
   .select-day {
     width: 80px;
+  }
+}
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
   }
 }

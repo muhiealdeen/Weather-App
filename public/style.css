@@ -94,13 +94,17 @@ body {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 20px;
+  background-image: url(assets/Background-weather.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
 }
 
 .card {
   width: 250px;
-  margin: 20px;
+  margin-top: 50px;
   padding: 10px;
-  background-color: #f2f2f2;
+  background: rgba(242, 242, 242, 0.7);
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
@@ -113,11 +117,12 @@ body {
 
 /* CSS for the elements inside each card */
 .card h3 {
-  font-size: 18px;
+  font-size: 20px;
   margin: 10px;
 }
 
 .card p {
+  font-size: 18px;
   margin: 10px;
 }
 

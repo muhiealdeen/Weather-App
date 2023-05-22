@@ -90,7 +90,7 @@ function handleDailyWeatherData(data) {
 
     card.innerHTML = `
       <h3>Day ${i + 1}</h3>
-      <p>Time: ${time}</p>
+      <p>Date: ${time}</p>
       <p>Weather Code: ${weathercode}</p>
       <p>Max Temperature: ${temperatureMax}</p>
       <p>Min Temperature: ${temperatureMin}</p>

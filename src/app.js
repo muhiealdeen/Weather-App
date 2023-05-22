@@ -1,7 +1,7 @@
 const searchInput = document.querySelector('.search');
 const submitButton = document.querySelector('.submit-button');
-const mainContainer = document.querySelector('.maine-container');
-
+const mainContainer = document.querySelector('.main-container');
+// ---------------------- click addEventListener----------------------------------
 const cityNameAndNumberOFdays = submitButton.addEventListener(
   'click',
   async function () {
@@ -12,10 +12,11 @@ const cityNameAndNumberOFdays = submitButton.addEventListener(
     // createCards(selectedValue);
 
     // console.log(selectedValue);
-    await handleCityName(writtenCityName, selectedValue);
-    searchInput.value = '';
+    getError(writtenCityName, selectedValue);
   },
 );
+
+// ---------------------- keydown addEventListener with ----------------------------------
 
 searchInput.addEventListener('keydown', async function (event) {
   if (event.key === 'Enter') {
@@ -24,12 +25,34 @@ searchInput.addEventListener('keydown', async function (event) {
     const writtenCityName = searchInput.value.toLowerCase();
     const selectElement = document.querySelector('.select-day');
     const selectedValue = selectElement.value;
-
-    await handleCityName(writtenCityName, selectedValue);
-    searchInput.value = '';
+    getError(writtenCityName, selectedValue);
   }
 });
-//----------------------- In this part of code we fething the goecdes to get the latitude and longitude of the chosen city -----------------------------
+
+//------------------ In this functiom we get the errror and display it to the user-------------------------
+async function getError(writtenCityName, selectedValue) {
+  if (writtenCityName.trim() === '') {
+    searchInput.value = '';
+    printErrorMessage('Please enter a city name.');
+  } else {
+    try {
+      await handleCityName(writtenCityName, selectedValue);
+
+      searchInput.value = '';
+    } catch (error) {
+      printErrorMessage(
+        'Error retrieving weather data. Please try again later.',
+      );
+      console.error(error);
+    }
+  }
+}
+
+function printErrorMessage(message) {
+  mainContainer.innerHTML = `<div class="error">${message}</div>`;
+}
+
+//----------------------- In this part of code we are fething the goecdes to get the latitude and longitude of the chosen city -----------------------------
 
 async function handleCityName(cityName, numberOfDays) {
   // console.log(cityName);
@@ -49,7 +72,7 @@ async function handleCityName(cityName, numberOfDays) {
     }
   }
 
-  //-------------------------- In this part of code we fething the weather data for the chosen city --------------------------
+  //-------------------------- In this part of code we are extacting the latitude, longitude and fething the weather data for the chosen city --------------------------
   try {
     const data = await getCityLocationData(geoUrl);
     const latitude = data.results[0].latitude;
@@ -91,7 +114,7 @@ function handleDailyWeatherData(data) {
 
   for (let i = 0; i < data.daily.time.length; i++) {
     const time = data.daily.time[i];
-    const weathercode = data.daily.weathercode[i];
+    // const weathercode = data.daily.weathercode[i];
     const temperatureMax = data.daily.temperature_2m_max[i];
     const temperatureMin = data.daily.temperature_2m_min[i];
     const sunrise = data.daily.sunrise[i];
@@ -105,7 +128,7 @@ function handleDailyWeatherData(data) {
     card.innerHTML = `
       <h3>Day ${i + 1}</h3>
       <p>Date: ${time}</p>
-      <p>Weather Code: ${weathercode}</p>
+      
       <p>Max Temperature: ${temperatureMax}</p>
       <p>Min Temperature: ${temperatureMin}</p>
       <p>Sunrise: ${sunrise}</p>

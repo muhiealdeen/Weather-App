@@ -47,7 +47,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 150px;
 }
 /*------------------- Header ---------------*/
 
@@ -94,12 +94,17 @@ body {
   border-radius: 5%;
 }
 
-.maine-container {
+.main-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 20px;
   flex-grow: 1;
+}
+
+.error {
+  font-size: 20px;
+  color: #ff0000;
 }
 
 .card {
@@ -154,12 +159,6 @@ body {
   }
 }
 
-@media (max-width: 767px) {
-  .card {
-    width: 100%;
-  }
-}
-
 @media (max-width: 600px) {
   .search-container {
     order: 2;
@@ -181,7 +180,7 @@ body {
     width: 100px;
     order: 3;
   }
-  .maine-container {
+  .main-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;

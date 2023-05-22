@@ -99,7 +99,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 20px;
-  flex-grow: 1; /* Allow the container to grow and occupy the remaining space */
+  flex-grow: 1;
 }
 
 .card {
@@ -128,13 +128,13 @@ body {
   margin: 10px;
 }
 
-/* Additional styling for specific elements */
+/* Additional styling  */
 .card:hover h3 {
-  color: #ff0000; /* Change the color to your desired hover effect */
+  color: #ff0000;
 }
 
 .card:hover p {
-  color: #0000ff; /* Change the color to your desired hover effect */
+  color: #0000ff;
 }
 .footer {
   width: 100%;
@@ -144,7 +144,7 @@ body {
   background-color: lightblue;
   padding: 10px;
   text-align: center;
-  flex-shrink: 0; /* Ensure the footer doesn't shrink and remains at the bottom */
+  flex-shrink: 0;
 }
 @media (max-width: 1024px) {
   .maine-container {
@@ -162,24 +162,24 @@ body {
 
 @media (max-width: 600px) {
   .search-container {
-    order: 2; /* Move the search container below the logo */
+    order: 2;
     width: 100%;
-    margin-bottom: 10px; /* Add some spacing */
+    margin-bottom: 10px;
   }
 
   .search {
     width: 100px;
   }
   .logo {
-    order: 1; /* Move the logo to the top */
+    order: 1;
     width: 100%;
-    margin-bottom: 10px; /* Add some spacing */
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   .select-day {
     width: 100px;
-
-    order: 3; /* Move the select day below the search container */
+    order: 3;
   }
   .maine-container {
     display: grid;

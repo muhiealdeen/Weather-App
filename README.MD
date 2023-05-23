@@ -26,3 +26,6 @@ Stay informed and ready for all kinds of weather with the Daily Weather App.
   - README.MD
 
 Please chech the app here <https://muhiealdeen.github.io/Weather-App>
+
+Finally, here is the API I have used to build my app
+<https://open-meteo.com>

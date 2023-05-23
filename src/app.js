@@ -1,6 +1,14 @@
+//----------------------- I copied the refresh function from https://www.codexworld.com/how-to/reload-page-after-specific-time-5-seconds-in-javascript/-------------
+function refreshWeatherInfo() {
+  window.location.reload();
+}
+
+setInterval(refreshWeatherInfo, 15 * 60 * 1000);
+//-------------------------------------------------------------------------------------
 const searchInput = document.querySelector('.search');
 const submitButton = document.querySelector('.submit-button');
 const mainContainer = document.querySelector('.main-container');
+
 // ---------------------- click addEventListener----------------------------------
 const cityNameAndNumberOFdays = submitButton.addEventListener(
   'click',
@@ -9,9 +17,7 @@ const cityNameAndNumberOFdays = submitButton.addEventListener(
 
     const selectElement = document.querySelector('.select-day');
     const selectedValue = selectElement.value;
-    // createCards(selectedValue);
 
-    // console.log(selectedValue);
     getError(writtenCityName, selectedValue);
   },
 );
@@ -20,7 +26,7 @@ const cityNameAndNumberOFdays = submitButton.addEventListener(
 
 searchInput.addEventListener('keydown', async function (event) {
   if (event.key === 'Enter') {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     const writtenCityName = searchInput.value.toLowerCase();
     const selectElement = document.querySelector('.select-day');
@@ -37,7 +43,6 @@ async function getError(writtenCityName, selectedValue) {
   } else {
     try {
       await handleCityName(writtenCityName, selectedValue);
-
       searchInput.value = '';
     } catch (error) {
       printErrorMessage(
@@ -77,8 +82,6 @@ async function handleCityName(cityName, numberOfDays) {
     const data = await getCityLocationData(geoUrl);
     const latitude = data.results[0].latitude;
     const longitude = data.results[0].longitude;
-    // console.log('Latitude:', latitude);
-    // console.log('Longitude:', longitude);
     const mainUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum&current_weather=true&forecast_days=${numberOfDays}&timezone=auto`;
 
     const requiredWeatherData = await getData(mainUrl);
@@ -99,9 +102,7 @@ async function getData(url) {
     }
     const data = await response.json();
 
-    console.log(data);
-    await handleDailyWeatherData(data);
-    // return data;
+    handleDailyWeatherData(data);
   } catch (error) {
     console.log(error);
     throw error;
@@ -114,7 +115,6 @@ function handleDailyWeatherData(data) {
 
   for (let i = 0; i < data.daily.time.length; i++) {
     const time = data.daily.time[i];
-    // const weathercode = data.daily.weathercode[i];
     const temperatureMax = data.daily.temperature_2m_max[i];
     const temperatureMin = data.daily.temperature_2m_min[i];
     const sunrise = data.daily.sunrise[i];
@@ -128,7 +128,6 @@ function handleDailyWeatherData(data) {
     card.innerHTML = `
       <h3>Day ${i + 1}</h3>
       <p>Date: ${time}</p>
-      
       <p>Max Temperature: ${temperatureMax}</p>
       <p>Min Temperature: ${temperatureMin}</p>
       <p>Sunrise: ${sunrise}</p>

@@ -1,35 +1,22 @@
-# Weather App
+# The Daily Weather App
 
-I will create a generic weather app
+If You want to know the forecast information for up to 16 days to make a plane for your vacation ore you want to know what clothes you need to wear each day during the week then Daily weather app
+would help you the best.
 
-## Discription
+## Project Directory Structure:
 
-It will have a search bar to find out information about the weather in the chosen city
+- root
 
-It will provide a weather forecast for the chosen number of days (OPTIONAL)
+  - public
 
-It will refresh itself every 15 minutes automatically
-It will give extra information about wind
+    - assets
+      - Background-weather.jpg
+      - favicon.ico
+    - style.css
+    - src
+      - app.js
 
-## plannig
+  - index.html
+  - README.MD
 
-- finding an appropriate API
-- Drow the design of the app
-- create the HTML page
-- create a CSS file
-- Implement Javascript code
-
-## Designnig
-
-### Should have
-
-- The app will have a search bar with submit button
-- the required information will be displayed on cards for 3 days regarding the city that has been chosen
-- In case the user hasn't chosen any number of days or city the app will display an ERROR message.
-
-#### Nice to have
-
-Select element, to select the number of days If the user likes to see more days
-
-Finally, here is the API I am using
-<https://open-meteo.com>
+Please chech the app here https://muhiealdeen.github.io/Weather-App
